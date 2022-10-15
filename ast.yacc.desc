@@ -1,0 +1,1656 @@
+3 rules not reduced
+
+warning: rule <Commseq : lbrace IncommandSeq rbrace > will never be reduced
+warning: rule <Comm : Variable colonequal Expressionbool > will never be reduced
+warning: rule <Identifierr : Variable > will never be reduced
+
+state 0:
+
+	Program : . program Identifier cons Block 
+
+	program	shift 1
+
+	Program	goto 92
+
+	.	error
+
+
+state 1:
+
+	Program : program . Identifier cons Block 
+
+	var	shift 3
+
+	Identifier	goto 2
+
+	.	error
+
+
+state 2:
+
+	Program : program Identifier . cons Block 
+
+	cons	shift 4
+
+
+	.	error
+
+
+state 3:
+
+	Identifier : var .  (reduce by rule 47)
+
+	cons	reduce by rule 47
+	colon	reduce by rule 47
+	semicolon	reduce by rule 47
+	comma	reduce by rule 47
+	colonequal	reduce by rule 47
+	then_term	reduce by rule 47
+	do_term	reduce by rule 47
+	rparen	reduce by rule 47
+	parallel	reduce by rule 47
+	andand	reduce by rule 47
+	less	reduce by rule 47
+	lessequal	reduce by rule 47
+	equal	reduce by rule 47
+	greater	reduce by rule 47
+	greaterequal	reduce by rule 47
+	lessgreat	reduce by rule 47
+	plus	reduce by rule 47
+	minus	reduce by rule 47
+	mult	reduce by rule 47
+	divi	reduce by rule 47
+	percent	reduce by rule 47
+
+
+	.	error
+
+
+state 4:
+
+	Program : program Identifier cons . Block 
+
+	variab	shift 8
+	lbrace	reduce by rule 2
+
+	Block	goto 7
+	DeclarationSeq	goto 6
+	Declaration	goto 5
+
+	.	error
+
+
+state 5:
+
+	DeclarationSeq : Declaration . DeclarationSeq 
+
+	variab	shift 8
+	lbrace	reduce by rule 2
+
+	DeclarationSeq	goto 9
+	Declaration	goto 5
+
+	.	error
+
+
+state 6:
+
+	Block : DeclarationSeq . CommandSeq 
+
+	lbrace	shift 11
+
+	CommandSeq	goto 10
+
+	.	error
+
+
+state 7:
+
+	Program : program Identifier cons Block .  (reduce by rule 0)
+
+	EOF	reduce by rule 0
+
+
+	.	error
+
+
+state 8:
+
+	Declaration : variab . VariableList colon int semicolon 
+	Declaration : variab . VariableList colon bool semicolon 
+
+	var	shift 3
+
+	Identifier	goto 14
+	VariableList	goto 13
+	Variable	goto 12
+
+	.	error
+
+
+state 9:
+
+	DeclarationSeq : Declaration DeclarationSeq .  (reduce by rule 3)
+
+	lbrace	reduce by rule 3
+
+
+	.	error
+
+
+state 10:
+
+	Block : DeclarationSeq CommandSeq .  (reduce by rule 1)
+
+	EOF	reduce by rule 1
+
+
+	.	error
+
+
+state 11:
+
+	CommandSeq : lbrace . IncommandSeq rbrace 
+
+	var	shift 3
+	rbrace	reduce by rule 9
+	read	shift 21
+	write	shift 20
+	if_term	shift 19
+	while_term	shift 18
+
+	Identifier	goto 14
+	Command	goto 17
+	Variable	goto 16
+	IncommandSeq	goto 15
+
+	.	error
+
+
+state 12:
+
+	VariableList : Variable .  (reduce by rule 13)
+	VariableList : Variable . comma VariableList 
+
+	colon	reduce by rule 13
+	comma	shift 22
+
+
+	.	error
+
+
+state 13:
+
+	Declaration : variab VariableList . colon int semicolon 
+	Declaration : variab VariableList . colon bool semicolon 
+
+	colon	shift 23
+
+
+	.	error
+
+
+state 14:
+
+	Variable : Identifier .  (reduce by rule 46)
+
+	colon	reduce by rule 46
+	semicolon	reduce by rule 46
+	comma	reduce by rule 46
+	colonequal	reduce by rule 46
+	then_term	reduce by rule 46
+	do_term	reduce by rule 46
+	rparen	reduce by rule 46
+	parallel	reduce by rule 46
+	andand	reduce by rule 46
+	less	reduce by rule 46
+	lessequal	reduce by rule 46
+	equal	reduce by rule 46
+	greater	reduce by rule 46
+	greaterequal	reduce by rule 46
+	lessgreat	reduce by rule 46
+	plus	reduce by rule 46
+	minus	reduce by rule 46
+	mult	reduce by rule 46
+	divi	reduce by rule 46
+	percent	reduce by rule 46
+
+
+	.	error
+
+
+state 15:
+
+	CommandSeq : lbrace IncommandSeq . rbrace 
+
+	rbrace	shift 24
+
+
+	.	error
+
+
+state 16:
+
+	Command : Variable . colonequal Expressionbool 
+
+	colonequal	shift 25
+
+
+	.	error
+
+
+state 17:
+
+	IncommandSeq : Command . semicolon IncommandSeq 
+
+	semicolon	shift 26
+
+
+	.	error
+
+
+state 18:
+
+	Command : while_term . Expressionbool do_term CommandSeq endwh 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Termand	goto 33
+	Factor	goto 32
+	Factorbool	goto 31
+	Expressionbool	goto 30
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 19:
+
+	Command : if_term . Expressionbool then_term CommandSeq else_term CommandSeq endif 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Termand	goto 33
+	Factor	goto 32
+	Factorbool	goto 31
+	Expressionbool	goto 43
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 20:
+
+	Command : write . Expressionbool 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Termand	goto 33
+	Factor	goto 32
+	Factorbool	goto 31
+	Expressionbool	goto 44
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 21:
+
+	Command : read . Variable 
+
+	var	shift 3
+
+	Identifier	goto 14
+	Variable	goto 45
+
+	.	error
+
+
+state 22:
+
+	VariableList : Variable comma . VariableList 
+
+	var	shift 3
+
+	Identifier	goto 14
+	VariableList	goto 46
+	Variable	goto 12
+
+	.	error
+
+
+state 23:
+
+	Declaration : variab VariableList colon . int semicolon 
+	Declaration : variab VariableList colon . bool semicolon 
+
+	int	shift 48
+	bool	shift 47
+
+
+	.	error
+
+
+state 24:
+
+	CommandSeq : lbrace IncommandSeq rbrace .  (reduce by rule 8)
+
+	else_term	reduce by rule 8
+	endif	reduce by rule 8
+	endwh	reduce by rule 8
+	EOF	reduce by rule 8
+
+
+	.	error
+
+
+state 25:
+
+	Command : Variable colonequal . Expressionbool 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Termand	goto 33
+	Factor	goto 32
+	Factorbool	goto 31
+	Expressionbool	goto 49
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 26:
+
+	IncommandSeq : Command semicolon . IncommandSeq 
+
+	var	shift 3
+	rbrace	reduce by rule 9
+	read	shift 21
+	write	shift 20
+	if_term	shift 19
+	while_term	shift 18
+
+	Identifier	goto 14
+	Command	goto 17
+	Variable	goto 16
+	IncommandSeq	goto 50
+
+	.	error
+
+
+state 27:
+
+	Factor : Numeral .  (reduce by rule 20)
+
+	semicolon	reduce by rule 20
+	then_term	reduce by rule 20
+	do_term	reduce by rule 20
+	rparen	reduce by rule 20
+	parallel	reduce by rule 20
+	andand	reduce by rule 20
+	less	reduce by rule 20
+	lessequal	reduce by rule 20
+	equal	reduce by rule 20
+	greater	reduce by rule 20
+	greaterequal	reduce by rule 20
+	lessgreat	reduce by rule 20
+	plus	reduce by rule 20
+	minus	reduce by rule 20
+	mult	reduce by rule 20
+	divi	reduce by rule 20
+	percent	reduce by rule 20
+
+
+	.	error
+
+
+state 28:
+
+	Factor : Variable .  (reduce by rule 21)
+
+	semicolon	reduce by rule 21
+	then_term	reduce by rule 21
+	do_term	reduce by rule 21
+	rparen	reduce by rule 21
+	parallel	reduce by rule 21
+	andand	reduce by rule 21
+	less	reduce by rule 21
+	lessequal	reduce by rule 21
+	equal	reduce by rule 21
+	greater	reduce by rule 21
+	greaterequal	reduce by rule 21
+	lessgreat	reduce by rule 21
+	plus	reduce by rule 21
+	minus	reduce by rule 21
+	mult	reduce by rule 21
+	divi	reduce by rule 21
+	percent	reduce by rule 21
+
+
+	.	error
+
+
+state 29:
+
+	Factorbool : Comparison .  (reduce by rule 26)
+
+	semicolon	reduce by rule 26
+	then_term	reduce by rule 26
+	do_term	reduce by rule 26
+	rparen	reduce by rule 26
+	parallel	reduce by rule 26
+	andand	reduce by rule 26
+
+
+	.	error
+
+
+state 30:
+
+	Expressionbool : Expressionbool . parallel Termand 
+	Command : while_term Expressionbool . do_term CommandSeq endwh 
+
+	do_term	shift 52
+	parallel	shift 51
+
+
+	.	error
+
+
+state 31:
+
+	Termand : Factorbool .  (reduce by rule 38)
+
+	semicolon	reduce by rule 38
+	then_term	reduce by rule 38
+	do_term	reduce by rule 38
+	rparen	reduce by rule 38
+	parallel	reduce by rule 38
+	andand	reduce by rule 38
+
+
+	.	error
+
+
+state 32:
+
+	Termar : Factor .  (reduce by rule 36)
+
+	semicolon	reduce by rule 36
+	then_term	reduce by rule 36
+	do_term	reduce by rule 36
+	rparen	reduce by rule 36
+	parallel	reduce by rule 36
+	andand	reduce by rule 36
+	less	reduce by rule 36
+	lessequal	reduce by rule 36
+	equal	reduce by rule 36
+	greater	reduce by rule 36
+	greaterequal	reduce by rule 36
+	lessgreat	reduce by rule 36
+	plus	reduce by rule 36
+	minus	reduce by rule 36
+	mult	reduce by rule 36
+	divi	reduce by rule 36
+	percent	reduce by rule 36
+
+
+	.	error
+
+
+state 33:
+
+	Termand : Termand . andand Factorbool 
+	Expressionbool : Termand .  (reduce by rule 29)
+
+	semicolon	reduce by rule 29
+	then_term	reduce by rule 29
+	do_term	reduce by rule 29
+	rparen	reduce by rule 29
+	parallel	reduce by rule 29
+	andand	shift 53
+
+
+	.	error
+
+
+state 34:
+
+	Expressionar : Termar .  (reduce by rule 32)
+	Termar : Termar . divi Factor 
+	Termar : Termar . mult Factor 
+	Termar : Termar . percent Factor 
+
+	semicolon	reduce by rule 32
+	then_term	reduce by rule 32
+	do_term	reduce by rule 32
+	rparen	reduce by rule 32
+	parallel	reduce by rule 32
+	andand	reduce by rule 32
+	less	reduce by rule 32
+	lessequal	reduce by rule 32
+	equal	reduce by rule 32
+	greater	reduce by rule 32
+	greaterequal	reduce by rule 32
+	lessgreat	reduce by rule 32
+	plus	reduce by rule 32
+	minus	reduce by rule 32
+	mult	shift 56
+	divi	shift 55
+	percent	shift 54
+
+
+	.	error
+
+
+state 35:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar . less Expressionar 
+	Comparison : Expressionar . lessequal Expressionar 
+	Comparison : Expressionar . equal Expressionar 
+	Comparison : Expressionar . greater Expressionar 
+	Comparison : Expressionar . greaterequal Expressionar 
+	Comparison : Expressionar . lessgreat Expressionar 
+	Comparison : Expressionar .  (reduce by rule 45)
+
+	semicolon	reduce by rule 45
+	then_term	reduce by rule 45
+	do_term	reduce by rule 45
+	rparen	reduce by rule 45
+	parallel	reduce by rule 45
+	andand	reduce by rule 45
+	less	shift 64
+	lessequal	shift 63
+	equal	shift 62
+	greater	shift 61
+	greaterequal	shift 60
+	lessgreat	shift 59
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 36:
+
+	Numeral : number .  (reduce by rule 6)
+
+	semicolon	reduce by rule 6
+	then_term	reduce by rule 6
+	do_term	reduce by rule 6
+	rparen	reduce by rule 6
+	parallel	reduce by rule 6
+	andand	reduce by rule 6
+	less	reduce by rule 6
+	lessequal	reduce by rule 6
+	equal	reduce by rule 6
+	greater	reduce by rule 6
+	greaterequal	reduce by rule 6
+	lessgreat	reduce by rule 6
+	plus	reduce by rule 6
+	minus	reduce by rule 6
+	mult	reduce by rule 6
+	divi	reduce by rule 6
+	percent	reduce by rule 6
+
+
+	.	error
+
+
+state 37:
+
+	Numeral : plus . number 
+
+	number	shift 65
+
+
+	.	error
+
+
+state 38:
+
+	Factorbool : exclam . Factorbool 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Factor	goto 32
+	Factorbool	goto 66
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 39:
+
+	Factor : fal .  (reduce by rule 24)
+
+	semicolon	reduce by rule 24
+	then_term	reduce by rule 24
+	do_term	reduce by rule 24
+	rparen	reduce by rule 24
+	parallel	reduce by rule 24
+	andand	reduce by rule 24
+	less	reduce by rule 24
+	lessequal	reduce by rule 24
+	equal	reduce by rule 24
+	greater	reduce by rule 24
+	greaterequal	reduce by rule 24
+	lessgreat	reduce by rule 24
+	plus	reduce by rule 24
+	minus	reduce by rule 24
+	mult	reduce by rule 24
+	divi	reduce by rule 24
+	percent	reduce by rule 24
+
+
+	.	error
+
+
+state 40:
+
+	Factor : tr .  (reduce by rule 23)
+
+	semicolon	reduce by rule 23
+	then_term	reduce by rule 23
+	do_term	reduce by rule 23
+	rparen	reduce by rule 23
+	parallel	reduce by rule 23
+	andand	reduce by rule 23
+	less	reduce by rule 23
+	lessequal	reduce by rule 23
+	equal	reduce by rule 23
+	greater	reduce by rule 23
+	greaterequal	reduce by rule 23
+	lessgreat	reduce by rule 23
+	plus	reduce by rule 23
+	minus	reduce by rule 23
+	mult	reduce by rule 23
+	divi	reduce by rule 23
+	percent	reduce by rule 23
+
+
+	.	error
+
+
+state 41:
+
+	Factor : tilde . Factor 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Factor	goto 67
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 42:
+
+	Factor : lparen . Expressionbool rparen 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Termand	goto 33
+	Factor	goto 32
+	Factorbool	goto 31
+	Expressionbool	goto 68
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 43:
+
+	Expressionbool : Expressionbool . parallel Termand 
+	Command : if_term Expressionbool . then_term CommandSeq else_term CommandSeq endif 
+
+	then_term	shift 69
+	parallel	shift 51
+
+
+	.	error
+
+
+state 44:
+
+	Expressionbool : Expressionbool . parallel Termand 
+	Command : write Expressionbool .  (reduce by rule 17)
+
+	semicolon	reduce by rule 17
+	parallel	shift 51
+
+
+	.	error
+
+
+state 45:
+
+	Command : read Variable .  (reduce by rule 16)
+
+	semicolon	reduce by rule 16
+
+
+	.	error
+
+
+state 46:
+
+	VariableList : Variable comma VariableList .  (reduce by rule 14)
+
+	colon	reduce by rule 14
+
+
+	.	error
+
+
+state 47:
+
+	Declaration : variab VariableList colon bool . semicolon 
+
+	semicolon	shift 70
+
+
+	.	error
+
+
+state 48:
+
+	Declaration : variab VariableList colon int . semicolon 
+
+	semicolon	shift 71
+
+
+	.	error
+
+
+state 49:
+
+	Expressionbool : Expressionbool . parallel Termand 
+	Command : Variable colonequal Expressionbool .  (reduce by rule 15)
+
+	semicolon	reduce by rule 15
+	parallel	shift 51
+
+
+	.	error
+
+
+state 50:
+
+	IncommandSeq : Command semicolon IncommandSeq .  (reduce by rule 10)
+
+	rbrace	reduce by rule 10
+
+
+	.	error
+
+
+state 51:
+
+	Expressionbool : Expressionbool parallel . Termand 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Termand	goto 72
+	Factor	goto 32
+	Factorbool	goto 31
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 52:
+
+	Command : while_term Expressionbool do_term . CommandSeq endwh 
+
+	lbrace	shift 11
+
+	CommandSeq	goto 73
+
+	.	error
+
+
+state 53:
+
+	Termand : Termand andand . Factorbool 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	exclam	shift 38
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 35
+	Termar	goto 34
+	Factor	goto 32
+	Factorbool	goto 74
+	Identifier	goto 14
+	Comparison	goto 29
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 54:
+
+	Termar : Termar percent . Factor 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Factor	goto 75
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 55:
+
+	Termar : Termar divi . Factor 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Factor	goto 76
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 56:
+
+	Termar : Termar mult . Factor 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Factor	goto 77
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 57:
+
+	Expressionar : Expressionar minus . Termar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Termar	goto 78
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 58:
+
+	Expressionar : Expressionar plus . Termar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Termar	goto 79
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 59:
+
+	Comparison : Expressionar lessgreat . Expressionar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 80
+	Termar	goto 34
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 60:
+
+	Comparison : Expressionar greaterequal . Expressionar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 81
+	Termar	goto 34
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 61:
+
+	Comparison : Expressionar greater . Expressionar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 82
+	Termar	goto 34
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 62:
+
+	Comparison : Expressionar equal . Expressionar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 83
+	Termar	goto 34
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 63:
+
+	Comparison : Expressionar lessequal . Expressionar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 84
+	Termar	goto 34
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 64:
+
+	Comparison : Expressionar less . Expressionar 
+
+	var	shift 3
+	lparen	shift 42
+	tilde	shift 41
+	tr	shift 40
+	fal	shift 39
+	plus	shift 37
+	number	shift 36
+
+	Expressionar	goto 85
+	Termar	goto 34
+	Factor	goto 32
+	Identifier	goto 14
+	Variable	goto 28
+	Numeral	goto 27
+
+	.	error
+
+
+state 65:
+
+	Numeral : plus number .  (reduce by rule 7)
+
+	semicolon	reduce by rule 7
+	then_term	reduce by rule 7
+	do_term	reduce by rule 7
+	rparen	reduce by rule 7
+	parallel	reduce by rule 7
+	andand	reduce by rule 7
+	less	reduce by rule 7
+	lessequal	reduce by rule 7
+	equal	reduce by rule 7
+	greater	reduce by rule 7
+	greaterequal	reduce by rule 7
+	lessgreat	reduce by rule 7
+	plus	reduce by rule 7
+	minus	reduce by rule 7
+	mult	reduce by rule 7
+	divi	reduce by rule 7
+	percent	reduce by rule 7
+
+
+	.	error
+
+
+state 66:
+
+	Factorbool : exclam Factorbool .  (reduce by rule 27)
+
+	semicolon	reduce by rule 27
+	then_term	reduce by rule 27
+	do_term	reduce by rule 27
+	rparen	reduce by rule 27
+	parallel	reduce by rule 27
+	andand	reduce by rule 27
+
+
+	.	error
+
+
+state 67:
+
+	Factor : tilde Factor .  (reduce by rule 25)
+
+	semicolon	reduce by rule 25
+	then_term	reduce by rule 25
+	do_term	reduce by rule 25
+	rparen	reduce by rule 25
+	parallel	reduce by rule 25
+	andand	reduce by rule 25
+	less	reduce by rule 25
+	lessequal	reduce by rule 25
+	equal	reduce by rule 25
+	greater	reduce by rule 25
+	greaterequal	reduce by rule 25
+	lessgreat	reduce by rule 25
+	plus	reduce by rule 25
+	minus	reduce by rule 25
+	mult	reduce by rule 25
+	divi	reduce by rule 25
+	percent	reduce by rule 25
+
+
+	.	error
+
+
+state 68:
+
+	Factor : lparen Expressionbool . rparen 
+	Expressionbool : Expressionbool . parallel Termand 
+
+	rparen	shift 86
+	parallel	shift 51
+
+
+	.	error
+
+
+state 69:
+
+	Command : if_term Expressionbool then_term . CommandSeq else_term CommandSeq endif 
+
+	lbrace	shift 11
+
+	CommandSeq	goto 87
+
+	.	error
+
+
+state 70:
+
+	Declaration : variab VariableList colon bool semicolon .  (reduce by rule 5)
+
+	variab	reduce by rule 5
+	lbrace	reduce by rule 5
+
+
+	.	error
+
+
+state 71:
+
+	Declaration : variab VariableList colon int semicolon .  (reduce by rule 4)
+
+	variab	reduce by rule 4
+	lbrace	reduce by rule 4
+
+
+	.	error
+
+
+state 72:
+
+	Termand : Termand . andand Factorbool 
+	Expressionbool : Expressionbool parallel Termand .  (reduce by rule 28)
+
+	semicolon	reduce by rule 28
+	then_term	reduce by rule 28
+	do_term	reduce by rule 28
+	rparen	reduce by rule 28
+	parallel	reduce by rule 28
+	andand	shift 53
+
+
+	.	error
+
+
+state 73:
+
+	Command : while_term Expressionbool do_term CommandSeq . endwh 
+
+	endwh	shift 88
+
+
+	.	error
+
+
+state 74:
+
+	Termand : Termand andand Factorbool .  (reduce by rule 37)
+
+	semicolon	reduce by rule 37
+	then_term	reduce by rule 37
+	do_term	reduce by rule 37
+	rparen	reduce by rule 37
+	parallel	reduce by rule 37
+	andand	reduce by rule 37
+
+
+	.	error
+
+
+state 75:
+
+	Termar : Termar percent Factor .  (reduce by rule 35)
+
+	semicolon	reduce by rule 35
+	then_term	reduce by rule 35
+	do_term	reduce by rule 35
+	rparen	reduce by rule 35
+	parallel	reduce by rule 35
+	andand	reduce by rule 35
+	less	reduce by rule 35
+	lessequal	reduce by rule 35
+	equal	reduce by rule 35
+	greater	reduce by rule 35
+	greaterequal	reduce by rule 35
+	lessgreat	reduce by rule 35
+	plus	reduce by rule 35
+	minus	reduce by rule 35
+	mult	reduce by rule 35
+	divi	reduce by rule 35
+	percent	reduce by rule 35
+
+
+	.	error
+
+
+state 76:
+
+	Termar : Termar divi Factor .  (reduce by rule 33)
+
+	semicolon	reduce by rule 33
+	then_term	reduce by rule 33
+	do_term	reduce by rule 33
+	rparen	reduce by rule 33
+	parallel	reduce by rule 33
+	andand	reduce by rule 33
+	less	reduce by rule 33
+	lessequal	reduce by rule 33
+	equal	reduce by rule 33
+	greater	reduce by rule 33
+	greaterequal	reduce by rule 33
+	lessgreat	reduce by rule 33
+	plus	reduce by rule 33
+	minus	reduce by rule 33
+	mult	reduce by rule 33
+	divi	reduce by rule 33
+	percent	reduce by rule 33
+
+
+	.	error
+
+
+state 77:
+
+	Termar : Termar mult Factor .  (reduce by rule 34)
+
+	semicolon	reduce by rule 34
+	then_term	reduce by rule 34
+	do_term	reduce by rule 34
+	rparen	reduce by rule 34
+	parallel	reduce by rule 34
+	andand	reduce by rule 34
+	less	reduce by rule 34
+	lessequal	reduce by rule 34
+	equal	reduce by rule 34
+	greater	reduce by rule 34
+	greaterequal	reduce by rule 34
+	lessgreat	reduce by rule 34
+	plus	reduce by rule 34
+	minus	reduce by rule 34
+	mult	reduce by rule 34
+	divi	reduce by rule 34
+	percent	reduce by rule 34
+
+
+	.	error
+
+
+state 78:
+
+	Expressionar : Expressionar minus Termar .  (reduce by rule 31)
+	Termar : Termar . divi Factor 
+	Termar : Termar . mult Factor 
+	Termar : Termar . percent Factor 
+
+	semicolon	reduce by rule 31
+	then_term	reduce by rule 31
+	do_term	reduce by rule 31
+	rparen	reduce by rule 31
+	parallel	reduce by rule 31
+	andand	reduce by rule 31
+	less	reduce by rule 31
+	lessequal	reduce by rule 31
+	equal	reduce by rule 31
+	greater	reduce by rule 31
+	greaterequal	reduce by rule 31
+	lessgreat	reduce by rule 31
+	plus	reduce by rule 31
+	minus	reduce by rule 31
+	mult	shift 56
+	divi	shift 55
+	percent	shift 54
+
+
+	.	error
+
+
+state 79:
+
+	Expressionar : Expressionar plus Termar .  (reduce by rule 30)
+	Termar : Termar . divi Factor 
+	Termar : Termar . mult Factor 
+	Termar : Termar . percent Factor 
+
+	semicolon	reduce by rule 30
+	then_term	reduce by rule 30
+	do_term	reduce by rule 30
+	rparen	reduce by rule 30
+	parallel	reduce by rule 30
+	andand	reduce by rule 30
+	less	reduce by rule 30
+	lessequal	reduce by rule 30
+	equal	reduce by rule 30
+	greater	reduce by rule 30
+	greaterequal	reduce by rule 30
+	lessgreat	reduce by rule 30
+	plus	reduce by rule 30
+	minus	reduce by rule 30
+	mult	shift 56
+	divi	shift 55
+	percent	shift 54
+
+
+	.	error
+
+
+state 80:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar lessgreat Expressionar .  (reduce by rule 44)
+
+	semicolon	reduce by rule 44
+	then_term	reduce by rule 44
+	do_term	reduce by rule 44
+	rparen	reduce by rule 44
+	parallel	reduce by rule 44
+	andand	reduce by rule 44
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 81:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar greaterequal Expressionar .  (reduce by rule 43)
+
+	semicolon	reduce by rule 43
+	then_term	reduce by rule 43
+	do_term	reduce by rule 43
+	rparen	reduce by rule 43
+	parallel	reduce by rule 43
+	andand	reduce by rule 43
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 82:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar greater Expressionar .  (reduce by rule 42)
+
+	semicolon	reduce by rule 42
+	then_term	reduce by rule 42
+	do_term	reduce by rule 42
+	rparen	reduce by rule 42
+	parallel	reduce by rule 42
+	andand	reduce by rule 42
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 83:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar equal Expressionar .  (reduce by rule 41)
+
+	semicolon	reduce by rule 41
+	then_term	reduce by rule 41
+	do_term	reduce by rule 41
+	rparen	reduce by rule 41
+	parallel	reduce by rule 41
+	andand	reduce by rule 41
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 84:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar lessequal Expressionar .  (reduce by rule 40)
+
+	semicolon	reduce by rule 40
+	then_term	reduce by rule 40
+	do_term	reduce by rule 40
+	rparen	reduce by rule 40
+	parallel	reduce by rule 40
+	andand	reduce by rule 40
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 85:
+
+	Expressionar : Expressionar . plus Termar 
+	Expressionar : Expressionar . minus Termar 
+	Comparison : Expressionar less Expressionar .  (reduce by rule 39)
+
+	semicolon	reduce by rule 39
+	then_term	reduce by rule 39
+	do_term	reduce by rule 39
+	rparen	reduce by rule 39
+	parallel	reduce by rule 39
+	andand	reduce by rule 39
+	plus	shift 58
+	minus	shift 57
+
+
+	.	error
+
+
+state 86:
+
+	Factor : lparen Expressionbool rparen .  (reduce by rule 22)
+
+	semicolon	reduce by rule 22
+	then_term	reduce by rule 22
+	do_term	reduce by rule 22
+	rparen	reduce by rule 22
+	parallel	reduce by rule 22
+	andand	reduce by rule 22
+	less	reduce by rule 22
+	lessequal	reduce by rule 22
+	equal	reduce by rule 22
+	greater	reduce by rule 22
+	greaterequal	reduce by rule 22
+	lessgreat	reduce by rule 22
+	plus	reduce by rule 22
+	minus	reduce by rule 22
+	mult	reduce by rule 22
+	divi	reduce by rule 22
+	percent	reduce by rule 22
+
+
+	.	error
+
+
+state 87:
+
+	Command : if_term Expressionbool then_term CommandSeq . else_term CommandSeq endif 
+
+	else_term	shift 89
+
+
+	.	error
+
+
+state 88:
+
+	Command : while_term Expressionbool do_term CommandSeq endwh .  (reduce by rule 19)
+
+	semicolon	reduce by rule 19
+
+
+	.	error
+
+
+state 89:
+
+	Command : if_term Expressionbool then_term CommandSeq else_term . CommandSeq endif 
+
+	lbrace	shift 11
+
+	CommandSeq	goto 90
+
+	.	error
+
+
+state 90:
+
+	Command : if_term Expressionbool then_term CommandSeq else_term CommandSeq . endif 
+
+	endif	shift 91
+
+
+	.	error
+
+
+state 91:
+
+	Command : if_term Expressionbool then_term CommandSeq else_term CommandSeq endif .  (reduce by rule 18)
+
+	semicolon	reduce by rule 18
+
+
+	.	error
+
+
+state 92:
+
+
+	EOF	accept
+
+
+	.	error
+
+462 of 702 action table entries left after compaction
+164 goto table entries

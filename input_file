@@ -1,0 +1,7 @@
+program test2::
+    var A, B, C, D: int;
+    var E, F, G: int;
+{
+    A := ((A * B) + ((C / D) % A));
+    B := (A - B);
+}

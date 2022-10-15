@@ -1,0 +1,13 @@
+
+Library
+    structure ASTX
+    structure AST
+is
+    ast.sml 
+    ast.lex 
+    ast.yacc:MLYacc 
+    load-ast.sml 
+    compiler.sml
+    $/basis.cm 
+    $/ml-yacc-lib.cm
+    $smlnj/compiler/compiler.cm
